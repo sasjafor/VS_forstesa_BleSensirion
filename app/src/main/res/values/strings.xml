@@ -1,3 +1,19 @@
 <resources>
-    <string name="app_name">VS_forstesa_BleSensirion</string>
+    <string name="app_name">Bluetooth Low Energy</string>
+    <string name="ble_not_supported">Bluetooth Low Energy is not supported</string>
+    <string name="ble_supported">Bluetooth Low Energy is supported</string>
+    <string name="bt_enabled">Bluetooth is enabled</string>
+    <string name="should_enable">Do you want to enable bluetooth?</string>
+    <string name="bt_disabled">Bluetooth is disabled!</string>
+    <string name="yes">Yes, please</string>
+    <string name="no">No, thanks</string>
+    <string name="ok">Well, what choice do I have...</string>
+    <string name="should_enable_GPS">Do you want to enable GPS service?</string>
+    <string name="GPS_disabled">GPS service is disabled!</string>
+    <string name="GPS_enabled">GPS service available</string>
+    <string name="start">Start scanning</string>
+    <string name="unknown_device">Unknown device</string>
+    <string name="permission_disabled">No permission!</string>
+    <string name="give_permission">Please give the permission to use location access.</string>
+    <string name="scanning">scan started</string>
 </resources>
