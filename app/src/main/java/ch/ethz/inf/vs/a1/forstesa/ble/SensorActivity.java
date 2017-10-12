@@ -8,6 +8,9 @@ import android.bluetooth.BluetoothGattDescriptor;
 import android.bluetooth.BluetoothGattService;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.jjoe64.graphview.GraphView;
+
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import static android.bluetooth.BluetoothGattCharacteristic.PERMISSION_READ;
@@ -32,7 +35,11 @@ public class SensorActivity extends AppCompatActivity {
         myBluetoothGatt = device.connectGatt(this, false, myGattCallback);
 
         //TODO: add graph
-
+        GraphView graph = (GraphView) findViewById(R.id.graph);
+        graph.getViewport().setXAxisBoundsManual(true);
+        graph.getViewport().setMinX(0);
+        graph.getViewport().setMaxX(100);
+        graphContainer = new GraphContainerBle(graph);
     }
 
     @Override
@@ -139,12 +146,14 @@ public class SensorActivity extends AppCompatActivity {
         float value = convertRawValue(data);
 
         if (characteristic.getUuid().equals(UUID_HUMIDITY_CHARACTERISTIC)) {
-
             System.out.println("DEBUG: humidity: " + value);
+
+            graphContainer.addValue(counter1++,value,0);
         }
         else if (characteristic.getUuid().equals(UUID_TEMPERATURE_CHARACTERISTIC)) {
-
             System.out.println("DEBUG: temperature: " + value);
+
+            graphContainer.addValue(counter2++,value,1);
         }
     }
 
@@ -163,4 +172,7 @@ public class SensorActivity extends AppCompatActivity {
     private BluetoothGattService temperature_service;
     private BluetoothGattCharacteristic humidity_characteristics;
     private BluetoothGattCharacteristic temperature_characteristics;
+
+    private GraphContainerBle graphContainer;
+    private long counter1 = 0, counter2 = 0;
 }
